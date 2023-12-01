@@ -5,6 +5,18 @@ export class BoxGeometrie extends Geometry{
     constructor(){
         super();
         this.init();
+        this.axisX = {
+            "min": -1,
+            "max": 1
+        };
+        this.axisY = {
+            "min": -1,
+            "max": 1
+        };
+        this.axisZ = {
+            "min": -1,
+            "max": 1
+        };
     }
 
     init(){

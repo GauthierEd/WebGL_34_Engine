@@ -22,7 +22,7 @@ let mesh = new Mesh(geometrie, material, "cube");
 mesh.translateX(1);
 renderer.add(mesh, renderer.gl, renderer.program);
 
-geometrie = new BoxGeometrie();
+/*geometrie = new BoxGeometrie();
 material = new PhongMaterial([1, 1, 1]);
 material.setAmbient([1, 1, 1]);
 material.setDiffuse([0.02013,0.05858,0.45752]);
@@ -31,7 +31,7 @@ material.setSpecular([0.16667,0.16667,0.16667]);
 material.setSpecularExponent(292.15686);
 let mesh2 = new Mesh(geometrie, material, "cube");
 mesh2.translateX(3)
-renderer.add(mesh2, renderer.gl, renderer.program);
+renderer.add(mesh2, renderer.gl, renderer.program);*/
 /*let axis = new Axis(200);
 let mat = new PhongMaterial([1, 1, 1]);
 mat.setAmbient([1, 1, 1]);
@@ -41,10 +41,10 @@ mat.setSpecular([0.16667,0.16667,0.16667]);
 mat.setSpecularExponent(292.15686);
 renderer.addObject(new Mesh(axis, mat, "axis"));*/
 
-let path = "common/models/car/car.obj";
+/*let path = "common/models/car/car.obj";
 let loader = new LoadOBJ(path);
 let m = await loader.load('car');
-renderer.add(m, renderer.gl, renderer.program);
+renderer.add(m, renderer.gl, renderer.program);*/
 
 
 

@@ -17,40 +17,23 @@ export class BoundingBox {
         x3  ---------------- x4
         
         */
-        // Face avant
-        this.x1 = [ this.axisX["min"],
-                    this.axisY["max"],
-                    this.axisZ["min"]
-                    ];
-        this.x2 = [ this.axisX["max"],
-                    this.axisY["max"],
-                    this.axisZ["min"]
-                    ];
-        this.x3 = [ this.axisX["min"],
-                    this.axisY["min"],
-                    this.axisZ["min"]
-                    ];
-        this.x4 = [ this.axisX["max"],
-                    this.axisY["min"],
-                    this.axisZ["min"]
-                    ];
+        this.coords = {
+            // Face avant
+            "x1": vec3.fromValues(this.axisX["min"], this.axisY["max"], this.axisZ["min"]),
+            "x2": vec3.fromValues(this.axisX["max"], this.axisY["max"], this.axisZ["min"]),
+            "x3": vec3.fromValues(this.axisX["min"], this.axisY["min"], this.axisZ["min"]),
+            "x4": vec3.fromValues(this.axisX["max"], this.axisY["min"], this.axisZ["min"]),
+            // Face arrière
+            "x5": vec3.fromValues(this.axisX["min"], this.axisY["max"], this.axisZ["max"]),
+            "x6": vec3.fromValues(this.axisX["max"], this.axisY["max"], this.axisZ["max"]),
+            "x7": vec3.fromValues(this.axisX["min"], this.axisY["min"], this.axisZ["max"]),
+            "x8": vec3.fromValues(this.axisX["max"], this.axisY["min"], this.axisZ["max"]),
+        };
+    }
 
-        // Face arrière
-        this.x5 = [ this.axisX["min"],
-                    this.axisY["max"],
-                    this.axisZ["max"]
-                    ];
-        this.x6 = [ this.axisX["max"],
-                    this.axisY["max"],
-                    this.axisZ["max"]
-                    ];
-        this.x7 = [ this.axisX["min"],
-                    this.axisY["min"],         
-                    this.axisZ["max"]
-                    ];
-        this.x8 = [ this.axisX["max"],
-                    this.axisY["min"],
-                    this.axisZ["max"]
-                    ];
+    updateBoundingBox(pos){
+        for(const [key, value] of Object.entries(this.coords)){
+            vec3.add(value, value, pos);
+        }
     }
 }

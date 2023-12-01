@@ -1,4 +1,5 @@
 import { Object3D } from "./Object3D.js";
+import { BoundingBox } from "./BoundingBox.js";
 
 export class Mesh extends Object3D{
     constructor(geometrie, material, name = "default"){
@@ -6,6 +7,9 @@ export class Mesh extends Object3D{
         this.geometrie = geometrie;
         this.material = material;
         this.hasTexture = false;
+        this.boundingBox = new BoundingBox(this.geometrie.axisX,
+                                           this.geometrie.axisY,
+                                           this.geometrie.axisZ);
         // Buffer
         this.vao = null;
         this.vertexBuffer = null;

@@ -134,7 +134,6 @@ export class Renderer{
             this.calculateNormal(modelMatrix);
             this.setMatriceUniforms();
             this.pop();
-
             if(object instanceof Mesh){
                 // Material
                 this.gl.uniform3fv(this.program.uKa, object.material.Ka);

@@ -10,6 +10,10 @@ export class Object3D{
         this.children = [];
     }
 
+    getScale(){
+        return this.scale;
+    }
+
     setScale(scale){
         vec3.set(this.scale, scale[0], scale[1], scale[2]);
     }
@@ -34,6 +38,10 @@ export class Object3D{
         object.init(gl, program)
         this.children.push(object);
         object.parent = this;
+    }
+
+    getPosition(){
+        return this.position;
     }
 
     setPosition(position){
@@ -67,6 +75,10 @@ export class Object3D{
         vec3.copy(this.position, newPos);
     }
 
+    getRotate(){
+        return this.quat;
+    }
+
     rotateX(deg){
         quat.rotateX(this.quat, this.quat, deg * (Math.PI / 180));
     }
@@ -82,10 +94,20 @@ export class Object3D{
     getModelMatrix(){
         const modelMatrix = mat4.create();
         mat4.fromRotationTranslation(modelMatrix, this.quat, this.position);
-        if(parent != null){
+        if(this.parent != null){
             mat4.multiply(modelMatrix, modelMatrix, this.parent.modelMatrix);
         }
         this.modelMatrix = modelMatrix;
         return modelMatrix;
+    }
+
+    getWorldPosition(){
+        if(this.parent != null){
+            const worldPos = vec3.create();
+            const parentPos = this.parent.getWorldPosition();
+            vec3.add(worldPos, worldPos, parentPos);
+            return worldPos;
+        }
+        return this.getPosition();
     }
 }

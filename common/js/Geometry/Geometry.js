@@ -4,6 +4,9 @@ export class Geometry{
         this.indices = [];
         this.normals = [];
         this.textures = [];
+        this.axisX = {};
+        this.axisY = {};
+        this.axisZ = {};
     }
 
     setTexture(texture){
