@@ -167,4 +167,15 @@ export class BoundingBox {
         }
         this.updateVertexBuffer(this.coords);
     }
+
+    intersectBoundingBox(b){
+        return (
+            this.coords["x1"][0] <= b.coords["x2"][0] &&
+            this.coords["x2"][0] >= b.coords["x1"][0] &&
+            this.coords["x3"][1] <= b.coords["x1"][1] &&
+            this.coords["x1"][1] >= b.coords["x3"][1] &&
+            this.coords["x5"][2] <= b.coords["x1"][2] &&
+            this.coords["x1"][2] >= b.coords["x5"][2]
+          );
+    }
 }

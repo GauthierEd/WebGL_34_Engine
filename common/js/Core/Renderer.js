@@ -7,7 +7,8 @@ import { SpotLight } from '../Lights/SpotLight.js';
 import { PositionalLight } from '../Lights/PositionalLight.js';
 import { Mesh } from './Mesh.js';
 import { MeshComplex } from './MeshComplex.js';
-import { BoundingBox } from './BoundingBox.js';
+import { PhongMaterial } from '../Material/PhongMaterial.js';
+import { BoxGeometrie } from '../Geometry/BoxGeometrie.js';
 
 export class Renderer{
     constructor(canvasID){
@@ -27,6 +28,7 @@ export class Renderer{
         this.stack = [];
         
         this.init();
+        this.scene.addFloor();
     }
 
     init(){
@@ -149,7 +151,6 @@ export class Renderer{
                 this.gl.uniform1f(this.program.uD, object.material.D);
                 this.gl.uniform1i(this.program.uIllum, object.material.illum);
                 
-                
                 // Geometry
                 let objectToDraw = object;
                 if(this.controls.hasDebug){
@@ -239,15 +240,9 @@ export class Renderer{
         this.drawObjects(this.scene);
     }
 
-
-    // Update object positions
-    animate() {
-        let cube = this.scene.objects[0];
-        cube.translateX(this.dxCone);
-        cube.rotateY(this.rotateX);
-        if(cube.position[0] >= 10 || cube.position[0] <= -10){
-            this.dxCone = -this.dxCone;
-        }
+    simulatePhysic() {
+        let cube = this.scene.children[1];
+        cube.translateX(0.01);
     }
   
     render() {

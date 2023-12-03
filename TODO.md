@@ -15,9 +15,10 @@
         - [x] setScaleY
         - [x] setScaleZ
     - [x] Afficher la bounding box:
-    - [ ] Fonction qui renvoie vrai ou faux en fonction si oui ou non la bounding box de l'objet rentre en collision avec une autre bounding box
-2 - [ ] Ajouter un sol
+    - [x] Fonction qui renvoie vrai ou faux en fonction si oui ou non la bounding box de l'objet rentre en collision avec une autre bounding box
 
+- [x] Ajouter sol
+  
 3 - Ajouter la physique
     -   [ ] Ajouter la gravité
         -   [ ] A chaque tick, ajouter une force vers le bas à la position de l'objet (10 m/s^2)

@@ -17,8 +17,8 @@ material.setSpecular([0.16667,0.16667,0.16667]);
 material.setSpecularExponent(292.15686);
 let mesh = new Mesh(geometrie, material, "cube1");
 renderer.add(mesh, renderer.gl, renderer.program);
-mesh.rotateY(45)
 
+/*
 geometrie = new BoxGeometrie();
 material = new PhongMaterial([1, 1, 1]);
 material.setAmbient([1, 1, 1]);
@@ -27,11 +27,9 @@ material.setIllum(2)
 material.setSpecular([0.16667,0.16667,0.16667]);
 material.setSpecularExponent(292.15686);
 let mesh2 = new Mesh(geometrie, material, "cube2");
-mesh.add(mesh2, renderer.gl, renderer.program);
-mesh2.setPosition([3,0,0])
-mesh2.rotateY(-45)
-mesh2.setScale([0.5,0.5,0.5])
-
+renderer.add(mesh2, renderer.gl, renderer.program);
+mesh2.translateX(2.45);
+*/
 
 /*let axis = new Axis(200);
 let mat = new PhongMaterial([1, 1, 1]);

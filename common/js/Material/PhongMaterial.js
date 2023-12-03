@@ -5,7 +5,7 @@ export class PhongMaterial extends BasicMaterial{
         super(diffuse);
         this.Ka = [1, 1, 1];
         this.Ks = [1, 1, 1];
-        this.Ns = 0;
+        this.Ns = 200;
         this.D = 1;
         this.illum = 2;
         this.texturePath = texture;

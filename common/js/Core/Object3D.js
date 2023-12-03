@@ -142,4 +142,8 @@ export class Object3D{
         }
         return this.scale;
     }
+
+    intersectObject(obj){
+        return this.boundingBox.intersectBoundingBox(obj.boundingBox);
+    }
 }
