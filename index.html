@@ -38,7 +38,6 @@
         out vec3 vEye[numLights];
 
         void main(void) {
-            //vec3 vertexPositionScaled = aVertexPosition * vec3(2.0, 1.0, 1.0);
             vec4 vertex = uModelViewMatrix * vec4(aVertexPosition, 1.0);
             vec4 lightPosition = vec4(0.0);
 

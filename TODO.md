@@ -1,20 +1,20 @@
 1 - BOUNDING BOX:
     - Mettre à jour à chaque changement de position de l'objet:
         - [x] Prendre la (position dans le monde du parent + position de l'objet) pour obtenir la position réelle dans l'espace
-        - [ ] setPosition
-        - [ ] translateX
-        - [ ] translateY
-        - [ ] translateZ
+        - [x] setPosition
+        - [x] translateX
+        - [x] translateY
+        - [x] translateZ
     - Mettre à jour à chaque rotation de l'objet:
-        - [ ] rotateX
-        - [ ] rotateY
-        - [ ] rotateZ
+        - [x] rotateX
+        - [x] rotateY
+        - [x] rotateZ
     - Prendre en compte le scale de l'objet:
-        - [ ] setScale
-        - [ ] setScaleX
-        - [ ] setScaleY
-        - [ ] setScaleZ
-    - [ ] Afficher la bounding box
+        - [x] setScale
+        - [x] setScaleX
+        - [x] setScaleY
+        - [x] setScaleZ
+    - [x] Afficher la bounding box:
     - [ ] Fonction qui renvoie vrai ou faux en fonction si oui ou non la bounding box de l'objet rentre en collision avec une autre bounding box
 2 - [ ] Ajouter un sol
 

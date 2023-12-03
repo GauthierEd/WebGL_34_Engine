@@ -7,6 +7,7 @@ import { SpotLight } from '../Lights/SpotLight.js';
 import { PositionalLight } from '../Lights/PositionalLight.js';
 import { Mesh } from './Mesh.js';
 import { MeshComplex } from './MeshComplex.js';
+import { BoundingBox } from './BoundingBox.js';
 
 export class Renderer{
     constructor(canvasID){
@@ -129,7 +130,12 @@ export class Renderer{
         root.children.forEach(object => {
             this.calculateModelView();
             this.push();
-            const modelMatrix = object.getModelMatrix();
+            let modelMatrix;
+            if(this.controls.hasDebug){
+                modelMatrix = this.scene.getModelMatrix();
+            }else{
+                modelMatrix = object.getModelMatrix();
+            }
             mat4.multiply(this.modelViewMatrix, this.modelViewMatrix, modelMatrix);
             this.calculateNormal(modelMatrix);
             this.setMatriceUniforms();
@@ -145,27 +151,31 @@ export class Renderer{
                 
                 
                 // Geometry
-                this.gl.bindVertexArray(object.vao);
-                this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, object.indexBuffer);
+                let objectToDraw = object;
+                if(this.controls.hasDebug){
+                    objectToDraw = object.boundingBox;
+                }
+                this.gl.bindVertexArray(objectToDraw.vao);
+                this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, objectToDraw.indexBuffer);
 
-                if(object.hasTexture){
+                if(objectToDraw.hasTexture){
                     this.gl.uniform1f(this.program.uTexture, true);
                     this.gl.activeTexture(this.gl.TEXTURE0);
-                    this.gl.bindTexture(this.gl.TEXTURE_2D, object.textureImg);
+                    this.gl.bindTexture(this.gl.TEXTURE_2D, objectToDraw.textureImg);
                     this.gl.uniform1i(this.program.uSampler, 0);
                 }else{
                     this.gl.uniform1f(this.program.uTexture, false);
                 }
 
                 // Draw
-                if(object.material.wireframe){
-                    this.gl.drawElements(this.gl.LINES, object.geometrie.indices.length, this.gl.UNSIGNED_SHORT, 0);
+                if(objectToDraw.material.wireframe){
+                    this.gl.drawElements(this.gl.LINES, objectToDraw.geometrie.indices.length, this.gl.UNSIGNED_SHORT, 0);
                 }else{
                     this.gl.enable(this.gl.CULL_FACE);
                     this.gl.cullFace(this.gl.FRONT);
-                    this.gl.drawElements(this.gl.TRIANGLES, object.geometrie.indices.length, this.gl.UNSIGNED_SHORT, 0);
+                    this.gl.drawElements(this.gl.TRIANGLES, objectToDraw.geometrie.indices.length, this.gl.UNSIGNED_SHORT, 0);
                     this.gl.cullFace(this.gl.BACK);
-                    this.gl.drawElements(this.gl.TRIANGLES, object.geometrie.indices.length, this.gl.UNSIGNED_SHORT, 0);
+                    this.gl.drawElements(this.gl.TRIANGLES, objectToDraw.geometrie.indices.length, this.gl.UNSIGNED_SHORT, 0);
                     this.gl.disable(this.gl.CULL_FACE);
                 }
             }else if(object instanceof MeshComplex){

@@ -2,7 +2,7 @@ export class Controls{
     constructor(canvas, camera){
         this.canvas = canvas;
         this.camera = camera;
-
+        this.hasDebug = false;
         this.hasClicked = false;
         this.motionFactor = 10;
         this.oldX = 0;
@@ -14,6 +14,13 @@ export class Controls{
         canvas.onmouseup = event => this.onMouseUp(event);
         canvas.onmousemove = event => this.onMouseMove(event);
         document.onwheel = event => this.onWheel(event);
+        document.onkeydown = event => this.onKeyDown(event);
+    }
+
+    onKeyDown(ev){
+        if(ev.code == 'KeyD'){
+            this.hasDebug = !this.hasDebug;
+        }
     }
 
     onWheel(ev){

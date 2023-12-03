@@ -34,7 +34,7 @@ const utils = {
       gl.compileShader(shader);
 
       if(!gl.getShaderParameter(shader, gl.COMPILE_STATUS)){
-        //console.error(gl.getShaderInfoLog(shader));
+        console.error(gl.getShaderInfoLog(shader));
         return null;
       }
       return shader;
@@ -168,6 +168,52 @@ const utils = {
 
     denormalizeColor(color){
       return color.map(c => c * 255);
-    }
+    },
+
+    createVerticesFromDict(dict){
+      let vertices = [];
+      // Front
+      vertices.push(...dict["x3"], ...dict["x4"], ...dict["x2"], ...dict["x1"]);
+      // Back
+      vertices.push(...dict["x7"], ...dict["x5"], ...dict["x6"], ...dict["x8"]);
+      // Top
+      vertices.push(...dict["x5"], ...dict["x1"], ...dict["x2"], ...dict["x6"]);
+      // Bottom
+      vertices.push(...dict["x7"], ...dict["x8"], ...dict["x4"], ...dict["x3"]);
+      // Right
+      vertices.push(...dict["x8"], ...dict["x6"], ...dict["x2"], ...dict["x4"]);
+      // Left
+      vertices.push(...dict["x7"], ...dict["x3"], ...dict["x1"], ...dict["x5"]);
+      return vertices;
+    },
+
+    createIndexForBox(){
+      let index = [];
+      let i = 0;
+      // Front
+      index.push(i, i+1, i+2);
+      index.push(i, i+2, i+3);
+      i += 4;
+      // Back
+      index.push(i, i+1, i+2);
+      index.push(i, i+2, i+3);
+      i += 4;
+      // Top
+      index.push(i, i+1, i+2);
+      index.push(i, i+2, i+3);
+      i += 4;
+      // Bottom
+      index.push(i, i+1, i+2);
+      index.push(i, i+2, i+3);
+      i += 4;
+      // Right
+      index.push(i, i+1, i+2);
+      index.push(i, i+2, i+3);
+      i += 4;
+      // Left
+      index.push(i, i+1, i+2);
+      index.push(i, i+2, i+3);
+      return index;
+    },
     
 };

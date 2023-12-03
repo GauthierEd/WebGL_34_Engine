@@ -64,5 +64,7 @@ export class Mesh extends Object3D{
         gl.bindVertexArray(null);
         gl.bindBuffer(gl.ARRAY_BUFFER, null),
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
+
+        this.boundingBox.init(gl, program);
     }
 }

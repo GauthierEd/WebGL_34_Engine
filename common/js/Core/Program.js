@@ -6,7 +6,6 @@ export class Program {
         if(!(vertexShaderId && fragmentShaderId)){
             return console.error('No shaders ID');
         }
-
         gl.attachShader(this.program, utils.getShader(gl, vertexShaderId));
         gl.attachShader(this.program, utils.getShader(gl, fragmentShaderId));
         gl.linkProgram(this.program);
